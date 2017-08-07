@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "jam",
+  "name": "JaM - Just a Magnet",
+  "description": "The simplest mod I've ever made. You can toggle a magnet on and off.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "url": "https://github.com/MichaelHillcox/Just-a-Magnet-Mod",
+  "updateUrl": https://raw.githubusercontent.com/MichaelHillcox/Just-a-Magnet-Mod/master/versions.json"",
+  "authorList": ["MiKeY"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
