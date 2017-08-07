@@ -1,4 +1,4 @@
-![JaM Mod Logo](https://www.dropbox.com/s/ktocvf4ehqqiabk/Jam.jpg?dl=0)
+![JaM Mod Logo](https://photos-6.dropbox.com/t/2/AAAGjamJQKGmQxbosD6mjjSdVR4pqkWo9IfCDiJF-e6e3Q/12/322219442/jpeg/32x32/1/_/1/2/Jam.jpg/EKnjhL8CGEsgAigC/sIDmNRKkdQaxZE1LAlfAVGw1I2lOzflnHQrRNN2SqdA?size=1280x960&size_mode=3)
 
 # Just-a-Magnet
 JaM - Just a Magnet Mod is a dead simple minecraft for MC1.10.2. it's only features are as follows
