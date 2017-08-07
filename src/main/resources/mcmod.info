@@ -1,6 +1,6 @@
 [
 {
-  "modid": "jam",
+  "modid": "justamagnet",
   "name": "JaM - Just a Magnet",
   "description": "The simplest mod I've ever made. You can toggle a magnet on and off.",
   "version": "${version}",
