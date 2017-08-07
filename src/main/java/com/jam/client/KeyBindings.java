@@ -18,9 +18,8 @@ public class KeyBindings {
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
-
         // Check if we should be watching for inputs
-        if( (FMLClientHandler.instance().isGUIOpen(GuiChat.class)) || (mc.currentScreen == null) || (mc.theWorld != null) )
+        if( (FMLClientHandler.instance().isGUIOpen(GuiChat.class)) || (mc.currentScreen != null) || (mc.theWorld == null) )
             return;
 
         // Toggle Our enabled state

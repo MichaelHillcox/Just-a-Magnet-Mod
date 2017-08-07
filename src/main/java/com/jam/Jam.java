@@ -20,6 +20,7 @@ public class Jam {
 
     public static Boolean jamEnabled = false;
     public static KeyBinding jamToggle = null;
+    public static int jamRange = 30;
 
     @Instance(Ref.MOD_ID)
     public static Jam instance;
@@ -34,7 +35,7 @@ public class Jam {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-
+        proxy.proxyInit();
     }
 
     @EventHandler
