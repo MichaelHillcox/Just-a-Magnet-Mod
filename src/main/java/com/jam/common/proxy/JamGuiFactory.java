@@ -23,7 +23,7 @@ public class JamGuiFactory implements IModGuiFactory {
 
     @Override
     public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return null;
+        return new JamGuiConfig( parentScreen );
     }
 
     @Override
