@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  * Created by MiKeY on 07/08/17.
  */
 
-@Mod(modid= Ref.MOD_ID, version = Ref.VERSION)
+@Mod(modid= Ref.MOD_ID, name=Ref.MOD_NAME, version = Ref.VERSION)
 public class Jam {
 
     public static Boolean jamEnabled = false;

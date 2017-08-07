@@ -6,7 +6,7 @@
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://github.com/MichaelHillcox/Just-a-Magnet-Mod",
-  "updateUrl": https://raw.githubusercontent.com/MichaelHillcox/Just-a-Magnet-Mod/master/versions.json"",
+  "updateUrl": "https://raw.githubusercontent.com/MichaelHillcox/Just-a-Magnet-Mod/master/versions.json",
   "authorList": ["MiKeY"],
   "credits": "",
   "logoFile": "",
