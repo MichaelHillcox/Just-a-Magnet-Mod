@@ -39,5 +39,4 @@ public class Jam {
     public void postInit(FMLPostInitializationEvent event) {
 
     }
-
 }
