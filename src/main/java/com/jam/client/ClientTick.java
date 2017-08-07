@@ -32,11 +32,10 @@ public class ClientTick {
             return;
 
         EntityPlayer player = event.player;
-        World world = event.player.getEntityWorld();
 
         range = Jam.jamRange;
         // Grab a list of the items around the player
-        List<EntityItem> floatingItems = world.getEntitiesWithinAABB(
+        List<EntityItem> floatingItems = event.player.getEntityWorld().getEntitiesWithinAABB(
                 EntityItem.class,
                 player.getEntityBoundingBox().expand(range, range, range)
         );
