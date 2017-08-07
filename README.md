@@ -9,7 +9,7 @@ JaM - Just a Magnet Mod is a dead simple minecraft for MC1.10.2. it's only featu
 Install the mod, open up a world, edit your settings to change the default key for Numpad 3 (optional), Press toggle button and enjoy 
 
 ## Preview 
-![Preview](http://i.imgur.com/nsvE0w1.gifv)
+![Preview](http://i.imgur.com/nsvE0w1.mp4)
 
 ### Help wanted
 If you know any other language then English then I'd love to support more languages. Please feel free to fork the project and submit a pull request. 
