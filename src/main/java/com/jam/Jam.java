@@ -2,6 +2,7 @@ package com.jam;
 
 import com.jam.client.ClientProxy;
 import com.jam.common.Ref;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class Jam {
 
     public static Boolean jamEnabled = false;
+    public static KeyBinding jamToggle = null;
 
     @Instance(Ref.MOD_ID)
     public static Jam instance;
