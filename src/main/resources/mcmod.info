@@ -9,7 +9,7 @@
   "updateUrl": "https://raw.githubusercontent.com/MichaelHillcox/Just-a-Magnet-Mod/master/versions.json",
   "authorList": ["MiKeY"],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "assets/justamagnet/logo.jpg",
   "screenshots": [],
   "dependencies": []
 }
