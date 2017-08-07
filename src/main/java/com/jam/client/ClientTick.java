@@ -2,8 +2,12 @@ package com.jam.client;
 
 import com.jam.Jam;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -18,25 +22,29 @@ public class ClientTick {
     private double speed = 0.05;
 
     @SubscribeEvent
-    public void tickEnd( TickEvent.ClientTickEvent event ) {
+    public void tickEnd( TickEvent.PlayerTickEvent event ) {
+
         // I want to see how well this runs with a large amount of items before I give this function it's own
         // threaded process.
 
         // Get the player
-        if(!Jam.jamEnabled || mc.theWorld == null || mc.thePlayer == null)
+        if(!Jam.jamEnabled)
             return;
+
+        EntityPlayer player = event.player;
+        World world = event.player.getEntityWorld();
 
         range = Jam.jamRange;
         // Grab a list of the items around the player
-        List<EntityItem> floatingItems = mc.theWorld.getEntitiesWithinAABB(
+        List<EntityItem> floatingItems = world.getEntitiesWithinAABB(
                 EntityItem.class,
-                new AxisAlignedBB(mc.thePlayer.posX - range, mc.thePlayer.posY - range, mc.thePlayer.posZ - range, mc.thePlayer.posX + range, mc.thePlayer.posY + range, mc.thePlayer.posZ + range )
+                player.getEntityBoundingBox().expand(range, range, range)
         );
 
         if( floatingItems.isEmpty() )
             return;
 
         for( EntityItem item : floatingItems )
-            item.addVelocity( (mc.thePlayer.posX - item.posX)*speed, (mc.thePlayer.posY - item.posY)*speed, (mc.thePlayer.posZ - item.posZ)*speed );
+            item.addVelocity( (player.posX - item.posX)*speed, (player.posY - item.posY)*speed, (player.posZ - item.posZ)*speed );
     }
 }
