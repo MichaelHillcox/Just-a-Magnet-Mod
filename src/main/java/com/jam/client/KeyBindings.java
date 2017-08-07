@@ -3,6 +3,8 @@ package com.jam.client;
 import com.jam.Jam;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -22,8 +24,13 @@ public class KeyBindings {
             return;
 
         // Toggle Our enabled state
-        if(Jam.jamToggle.isPressed())
+        if(Jam.jamToggle.isPressed()) {
             Jam.jamEnabled = !Jam.jamEnabled;
+            if( Jam.jamEnabled )
+                mc.ingameGUI.getChatGUI().printChatMessage( new TextComponentString(I18n.format("jam.toggle.enabled")));
+            else
+                mc.ingameGUI.getChatGUI().printChatMessage( new TextComponentString(I18n.format("jam.toggle.disabled")));
+        }
 
     }
 }
