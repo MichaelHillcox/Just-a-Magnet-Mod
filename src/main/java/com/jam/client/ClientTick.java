@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class ClientTick {
     private static final Minecraft mc = Minecraft.getMinecraft();
-    private int range;
-    private double speed = 0.05;
+    private int range = Jam.jamRange;
+    private double speed = Jam.jamSpeed;
 
     @SubscribeEvent
     public void tickEnd( TickEvent.PlayerTickEvent event ) {
@@ -33,7 +33,6 @@ public class ClientTick {
 
         EntityPlayer player = event.player;
 
-        range = Jam.jamRange;
         // Grab a list of the items around the player
         List<EntityItem> floatingItems = event.player.getEntityWorld().getEntitiesWithinAABB(
                 EntityItem.class,

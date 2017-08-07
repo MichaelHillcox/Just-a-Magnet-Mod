@@ -20,7 +20,8 @@ public class Jam {
 
     public static Boolean jamEnabled = false;
     public static KeyBinding jamToggle = null;
-    public static int jamRange = 30;
+    public static int jamRange = 2;
+    public static double jamSpeed = 0.02;
 
     @Instance(Ref.MOD_ID)
     public static Jam instance;
