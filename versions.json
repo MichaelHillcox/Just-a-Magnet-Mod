@@ -1,10 +1,20 @@
 {
 	"homepage": "https://github.com/MichaelHillcox/Just-a-Magnet-Mod",
+	"1.12": {
+		"1.12-r1.0.0": "See https://github.com/MichaelHillcox/XRay-Mod/releases/tag/1.12-v1.0.0"
+	},
+	"1.11.2": {
+		"1.11.2-r1.0.0": "See https://github.com/MichaelHillcox/XRay-Mod/releases/tag/1.11.2-v1.0.0"
+	},
 	"1.10.2": {
-		"1.10.2-r1.0.0": "See https://github.com/MichaelHillcox/XRay-Mod/releases/tag/1.10.2-v1.0.0",
+		"1.10.2-r1.0.0": "See https://github.com/MichaelHillcox/XRay-Mod/releases/tag/1.10.2-v1.0.0"
 	},
 	"promos": {
+		"1.12-latest": "1.12-r1.0.0",
+		"1.12-recommended": "1.12-r1.0.0",
+		"1.11.2-latest": "1.11.2-r1.0.0",
+		"1.11.2-recommended": "1.11.2-r1.0.0",
 		"1.10.2-latest": "1.10.2-r1.0.0",
-		"1.10.2-recommended": "1.10.2-r1.0.0",
+		"1.10.2-recommended": "1.10.2-r1.0.0"
 	}
 }
