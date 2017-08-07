@@ -1,6 +1,7 @@
 package com.jam.common;
 
 import com.jam.client.proxy.ClientProxy;
+import com.jam.common.config.ConfigHandler;
 import com.jam.common.lib.Ref;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.config.Configuration;
@@ -33,6 +34,7 @@ public class Jam {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        ConfigHandler.init(event.getSuggestedConfigurationFile());
         System.out.println("Jam Pre Init");
     }
 
