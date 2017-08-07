@@ -17,7 +17,6 @@ import java.util.List;
  * Created by MiKeY on 07/08/17.
  */
 public class ClientTick {
-    private static final Minecraft mc = Minecraft.getMinecraft();
     private int range = Jam.jamRange;
     private double speed = Jam.jamSpeed;
 
