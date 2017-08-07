@@ -12,9 +12,6 @@ import java.util.List;
  * Created by MiKeY on 07/08/17.
  */
 public class ClientTick {
-    private int range = Jam.jamRange;
-    private double speed = Jam.jamSpeed;
-
     @SubscribeEvent
     public void tickEvent( TickEvent.PlayerTickEvent event ) {
 
@@ -24,6 +21,9 @@ public class ClientTick {
         // Get the player
         if(!Jam.jamEnabled)
             return;
+
+        int range = Jam.jamRange;
+        double speed = Jam.jamSpeed;
 
         EntityPlayer player = event.player;
 

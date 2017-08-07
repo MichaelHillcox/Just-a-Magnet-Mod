@@ -4,6 +4,7 @@ import com.jam.client.proxy.ClientProxy;
 import com.jam.common.config.ConfigHandler;
 import com.jam.common.lib.Ref;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -34,6 +35,8 @@ public class Jam {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register( new ConfigHandler() );
+
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         System.out.println("Jam Pre Init");
     }

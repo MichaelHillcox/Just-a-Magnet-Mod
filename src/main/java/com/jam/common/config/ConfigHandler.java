@@ -23,9 +23,6 @@ public class ConfigHandler {
         Jam.config.load();
 
        SyncConfig(Jam.config);
-
-       if( Jam.config.hasChanged() )
-           Jam.config.save();
     }
 
     private static void SyncConfig( Configuration config ) {
@@ -33,5 +30,8 @@ public class ConfigHandler {
         //getInt(String name, String category, int defaultValue, int minValue, int maxValue, String comment, String langKey)
         Jam.jamRange = config.getInt("range", Configuration.CATEGORY_GENERAL,10, 1, 60, "The range that magnet will pick up blocks");
         Jam.jamSpeed = config.getFloat("speed", Configuration.CATEGORY_GENERAL,0.02f, 0.01f, 0.1f, "The Speed that the item will be brought to you");
+
+        if( config.hasChanged() )
+            config.save();
     }
 }
