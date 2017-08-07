@@ -21,7 +21,7 @@ public class ClientTick {
     private double speed = Jam.jamSpeed;
 
     @SubscribeEvent
-    public void tickEnd( TickEvent.PlayerTickEvent event ) {
+    public void tickEvent( TickEvent.PlayerTickEvent event ) {
 
         // I want to see how well this runs with a large amount of items before I give this function it's own
         // threaded process.
