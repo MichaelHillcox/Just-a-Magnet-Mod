@@ -1,6 +1,6 @@
 package com.jam.client;
 
-import com.jam.Jam;
+import com.jam.common.Jam;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.resources.I18n;

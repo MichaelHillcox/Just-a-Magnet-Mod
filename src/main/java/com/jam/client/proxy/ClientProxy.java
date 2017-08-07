@@ -1,7 +1,9 @@
-package com.jam.client;
+package com.jam.client.proxy;
 
-import com.jam.Jam;
-import com.jam.common.Ref;
+import com.jam.client.ClientTick;
+import com.jam.client.KeyBindings;
+import com.jam.common.Jam;
+import com.jam.common.lib.Ref;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;

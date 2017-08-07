@@ -1,21 +1,21 @@
-package com.jam;
+package com.jam.common;
 
-import com.jam.client.ClientProxy;
-import com.jam.common.Ref;
+import com.jam.client.proxy.ClientProxy;
+import com.jam.common.lib.Ref;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * Created by MiKeY on 07/08/17.
  */
 
-@Mod(modid= Ref.MOD_ID, name=Ref.MOD_NAME, version = Ref.VERSION)
+@Mod(modid= Ref.MOD_ID, name=Ref.MOD_NAME, version = Ref.VERSION, guiFactory = Ref.GUI_FACTORY)
 public class Jam {
 
     public static Boolean jamEnabled = false;
@@ -23,10 +23,12 @@ public class Jam {
     public static int jamRange = 2;
     public static double jamSpeed = 0.02;
 
+    public static Configuration config;
+
     @Instance(Ref.MOD_ID)
     public static Jam instance;
 
-    @SidedProxy(clientSide="com.jam.client.ClientProxy")
+    @SidedProxy(clientSide="com.jam.client.proxy.ClientProxy")
     private static ClientProxy proxy;
 
     @EventHandler
@@ -39,8 +41,4 @@ public class Jam {
         proxy.proxyInit();
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-
-    }
 }
