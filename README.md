@@ -1,6 +1,6 @@
 ![JaM Mod Logo](https://www.dropbox.com/s/ktocvf4ehqqiabk/Jam.jpg?dl=1)
 
-# Just-a-Magnet
+# Just-a-Magnet - [![Forge Downloads](http://cf.way2muchnoise.eu/jam-just-a-magnet.svg)](https://mods.curse.com/mc-mods/minecraft/274006-jam-just-a-magnet) [![Forge Available For](http://cf.way2muchnoise.eu/versions/jam-just-a-magnet.svg)](https://mods.curse.com/mc-mods/minecraft/274006-jam-just-a-magnet)
 JaM - Just a Magnet Mod is a dead simple minecraft mod for MC1.10.2. it's only features are as follows
 
 - Toggle on and off
