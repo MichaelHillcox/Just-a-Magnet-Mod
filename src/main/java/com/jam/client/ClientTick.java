@@ -3,6 +3,7 @@ package com.jam.client;
 import com.jam.common.Jam;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -30,9 +31,9 @@ public class ClientTick {
         // Grab a list of the items around the player
         List<EntityItem> floatingItems = event.player.getEntityWorld().getEntitiesWithinAABB(
                 EntityItem.class,
-                player.getEntityBoundingBox().expand(range, range, range)
+                new AxisAlignedBB(player.posX - range, player.posY - range, player.posZ - range, player.posX + range, player.posY + range, player.posZ + range)
         );
-
+        
         if( floatingItems.isEmpty() )
             return;
 
