@@ -1,7 +1,7 @@
 ![JaM Mod Logo](https://www.dropbox.com/s/ktocvf4ehqqiabk/Jam.jpg?dl=1)
 
 # Just-a-Magnet
-JaM - Just a Magnet Mod is a dead simple minecraft for MC1.10.2. it's only features are as follows
+JaM - Just a Magnet Mod is a dead simple minecraft mod for MC1.10.2. it's only features are as follows
 
 - Toggle on and off
 - Configurable Range and Speed
