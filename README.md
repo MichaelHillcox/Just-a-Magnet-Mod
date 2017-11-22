@@ -18,6 +18,7 @@ If you know any other language then English then I'd love to support more langua
 ### Supports
 |Minecraft Version|Mod Version|Forge Version|Branch
 |---|---|---|---
-|1.12|1.0.0|14.21.1.2387|[/master](https://github.com/MichaelHillcox/Just-a-Magnet-Mod/tree/master)
+|1.12.2|1.0.0|14.23.0.2491|[/master](https://github.com/MichaelHillcox/Just-a-Magnet-Mod/tree/master)
+|1.12|1.0.0|14.21.1.2387|[/1.12.x](https://github.com/MichaelHillcox/Just-a-Magnet-Mod/tree/1.12.x)
 |1.11.2|1.0.0|13.20.1.2386|[/1.11.x](https://github.com/MichaelHillcox/Just-a-Magnet-Mod/tree/1.11.x)
 |1.10.2|1.0.0|12.18.3.2185|[/1.10.x](https://github.com/MichaelHillcox/Just-a-Magnet-Mod/tree/1.10.x)
