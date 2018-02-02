@@ -38,6 +38,6 @@ public class ClientTick {
             return;
 
         for( EntityItem item : floatingItems )
-            item.addVelocity( (player.posX - item.posX)*speed, (player.posY - item.posY)*speed, (player.posZ - item.posZ)*speed );
+            item.addVelocity( (player.posX - item.posX)*speed, ((player.posY + 2)- item.posY)*speed, (player.posZ - item.posZ)*speed );
     }
 }
