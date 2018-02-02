@@ -4,6 +4,9 @@ import com.jam.client.proxy.ClientProxy;
 import com.jam.common.config.ConfigHandler;
 import com.jam.common.lib.Ref;
 import com.jam.common.proxy.IProxy;
+import com.jam.common.server.JamPacketHandler;
+import com.jam.common.server.Packet;
+import com.jam.common.server.PacketHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +16,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
 /**
  * Created by MiKeY on 07/08/17.
@@ -39,6 +45,8 @@ public class Jam {
 
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         System.out.println("Jam Pre Init");
+
+        JamPacketHandler.NetworkInstace.registerMessage(PacketHandler.class, Packet.class, 0, Side.SERVER);
 
         proxy.preInit(event);
     }

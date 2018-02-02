@@ -1,6 +1,6 @@
 package com.jam.common.proxy;
 
-import com.jam.client.ClientTick;
+import com.jam.common.server.ServerTick;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -15,7 +15,7 @@ public class ServerProxy implements IProxy {
 
     @Override
     public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register( new ClientTick() );
+        MinecraftForge.EVENT_BUS.register( new ServerTick() );
     }
 
     @Override
