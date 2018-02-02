@@ -1,5 +1,6 @@
 package com.jam.client;
 
+import com.jam.client.proxy.ClientProxy;
 import com.jam.common.Jam;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
@@ -23,7 +24,7 @@ public class KeyBindings {
             return;
 
         // Toggle Our enabled state
-        if(Jam.jamToggle.isPressed()) {
+        if(ClientProxy.jamToggle.isPressed()) {
             Jam.jamEnabled = !Jam.jamEnabled;
             if( Jam.jamEnabled )
                 mc.ingameGUI.getChatGUI().printChatMessage( new TextComponentString(I18n.format("jam.toggle.enabled")));
