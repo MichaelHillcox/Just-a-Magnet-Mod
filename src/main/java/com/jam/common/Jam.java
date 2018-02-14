@@ -5,7 +5,6 @@ import com.jam.common.lib.Ref;
 import com.jam.common.proxy.IProxy;
 import com.jam.common.server.JamPacketHandler;
 import com.jam.common.server.Packet;
-import com.jam.common.server.PacketHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -33,7 +32,7 @@ public class Jam {
     @Instance(Ref.MOD_ID)
     public static Jam instance;
 
-    @SidedProxy(clientSide="com.jam.client.proxy.ClientProxy", serverSide = "com.jam.common.proxy.ServerProxy")
+    @SidedProxy(clientSide="com.jam.common.proxy.ClientProxy", serverSide = "com.jam.common.proxy.ServerProxy")
     private static IProxy proxy;
 
     @EventHandler
@@ -43,7 +42,7 @@ public class Jam {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         System.out.println("Jam Pre Init");
 
-        JamPacketHandler.NetworkInstace.registerMessage(PacketHandler.class, Packet.class, 0, Side.SERVER);
+        JamPacketHandler.NetworkInstance.registerMessage(Packet.Handler.class, Packet.class, 0, Side.SERVER);
 
         proxy.preInit(event);
     }

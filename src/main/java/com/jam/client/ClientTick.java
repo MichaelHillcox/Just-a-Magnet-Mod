@@ -15,10 +15,6 @@ import java.util.List;
 public class ClientTick {
     @SubscribeEvent
     public void tickEvent( TickEvent.PlayerTickEvent event ) {
-
-        // TODO: REVIEW: I want to see how well this runs with a large amount of items before I give this function it's own
-        // threaded process.
-
         if (!Jam.jamEnabled)
             return;
 

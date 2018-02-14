@@ -1,12 +1,15 @@
 package com.jam.common.proxy;
 
-import com.jam.client.ClientTick;
-import net.minecraftforge.common.MinecraftForge;
+import com.jam.client.KeyBindingHandler;
+import com.jam.common.proxy.IProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class ServerProxy implements IProxy {
+/**
+ * Created by MiKeY on 07/08/17.
+ */
+public class ClientProxy implements IProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -15,7 +18,7 @@ public class ServerProxy implements IProxy {
 
     @Override
     public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register( new ClientTick() );
+        KeyBindingHandler.init();
     }
 
     @Override
