@@ -2,6 +2,8 @@ package com.jam.common.server;
 
 import com.jam.common.Jam;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -21,11 +23,14 @@ public class Packet implements IMessage {
         @Override
         public IMessage onMessage(Packet message, MessageContext ctx) {
 
-            Jam.jamEnabled = !Jam.jamEnabled;
-            if( Jam.jamEnabled )
-                ctx.getServerHandler().player.sendMessage(new TextComponentString("[Jam] Enabled"));
+            EntityPlayerMP player = ctx.getServerHandler().player;
+
+            NBTTagCompound tag = player.getEntityData();
+            tag.setBoolean("jam_toggle_on", !tag.getBoolean("jam_toggle_on"));
+            if( tag.getBoolean("jam_toggle_on") )
+                player.sendMessage(new TextComponentString("[Jam] Enabled"));
             else
-                ctx.getServerHandler().player.sendMessage(new TextComponentString("[Jam] Disabled"));
+                player.sendMessage(new TextComponentString("[Jam] Disabled"));
             return null;
         }
     }

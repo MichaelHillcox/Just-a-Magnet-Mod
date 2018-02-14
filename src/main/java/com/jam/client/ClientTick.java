@@ -3,6 +3,7 @@ package com.jam.client;
 import com.jam.common.Jam;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -15,13 +16,13 @@ import java.util.List;
 public class ClientTick {
     @SubscribeEvent
     public void tickEvent( TickEvent.PlayerTickEvent event ) {
-        if (!Jam.jamEnabled)
+        EntityPlayer player = event.player;
+        NBTTagCompound tag = player.getEntityData();
+        if (!tag.getBoolean("jam_toggle_on"))
             return;
 
         int range = Jam.jamRange;
         double speed = Jam.jamSpeed;
-
-        EntityPlayer player = event.player;
 
         // Grab a list of the items around the player
         List<EntityItem> floatingItems = event.player.getEntityWorld().getEntitiesWithinAABB(

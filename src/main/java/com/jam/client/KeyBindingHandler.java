@@ -18,7 +18,6 @@ import org.lwjgl.input.Keyboard;
 public class KeyBindingHandler {
 
     private static KeyBinding toggleJam;
-    private static Minecraft mc = Minecraft.getMinecraft();
 
     public static void init()
     {
