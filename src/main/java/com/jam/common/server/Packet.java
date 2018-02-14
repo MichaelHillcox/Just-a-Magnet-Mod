@@ -19,9 +19,7 @@ public class Packet implements IMessage {
     public static class Handler implements IMessageHandler<Packet, IMessage> {
         @Override
         public IMessage onMessage(Packet message, MessageContext ctx) {
-
             Jam.jamEnabled = !Jam.jamEnabled;
-
             return null;
         }
     }

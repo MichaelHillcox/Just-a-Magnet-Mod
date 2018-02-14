@@ -1,5 +1,6 @@
 package com.jam.common;
 
+import com.jam.client.ClientTick;
 import com.jam.common.config.ConfigHandler;
 import com.jam.common.lib.Ref;
 import com.jam.common.proxy.IProxy;
@@ -38,6 +39,7 @@ public class Jam {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register( new ConfigHandler() );
+        MinecraftForge.EVENT_BUS.register( new ClientTick() );
 
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         System.out.println("Jam Pre Init");

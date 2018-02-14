@@ -15,7 +15,7 @@ public class ServerProxy implements IProxy {
 
     @Override
     public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register( new ClientTick() );
+
     }
 
     @Override
