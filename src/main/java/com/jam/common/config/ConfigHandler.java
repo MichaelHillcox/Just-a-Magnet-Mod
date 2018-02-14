@@ -27,7 +27,7 @@ public class ConfigHandler {
 
     private static void SyncConfig( Configuration config ) {
         config.setCategoryComment(Configuration.CATEGORY_GENERAL, "Use the in-game config editor.");
-        //getInt(String name, String category, int defaultValue, int minValue, int maxValue, String comment, String langKey)
+
         Jam.jamRange = config.getInt("range", Configuration.CATEGORY_GENERAL,10, 1, 60, "The range that magnet will pick up blocks");
         Jam.jamSpeed = config.getFloat("speed", Configuration.CATEGORY_GENERAL,0.02f, 0.01f, 0.1f, "The Speed that the item will be brought to you");
 

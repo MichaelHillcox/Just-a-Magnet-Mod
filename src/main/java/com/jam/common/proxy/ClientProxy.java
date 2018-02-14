@@ -1,7 +1,6 @@
 package com.jam.common.proxy;
 
 import com.jam.client.KeyBindingHandler;
-import com.jam.common.proxy.IProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
