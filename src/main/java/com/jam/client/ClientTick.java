@@ -16,6 +16,9 @@ import java.util.List;
 public class ClientTick {
     @SubscribeEvent
     public void tickEvent( TickEvent.PlayerTickEvent event ) {
+        if( event.phase != TickEvent.Phase.END )
+            return;
+
         EntityPlayer player = event.player;
         NBTTagCompound tag = player.getEntityData();
         if (!tag.getBoolean("jam_toggle_on"))

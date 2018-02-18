@@ -1,5 +1,6 @@
 package com.jam.client.Capability;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -11,18 +12,16 @@ import javax.annotation.Nullable;
 
 public class BlacklistCapability implements IStorage<IBlacklist> {
 
-    private String blacklistPrefix = "blacklist_";
-
     @Nullable
     @Override
     public NBTBase writeNBT(Capability<IBlacklist> capability, IBlacklist instance, EnumFacing side) {
         NBTTagList tagList = new NBTTagList();
-        int iteration = 0;
-        for (String item : instance.getItems()) {
+
+        for (ItemStack item : instance.getItems()) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString(blacklistPrefix+iteration, item);
+            tag = item.writeToNBT(tag);
+
             tagList.appendTag(tag);
-            iteration ++;
         }
 
         return tagList;
