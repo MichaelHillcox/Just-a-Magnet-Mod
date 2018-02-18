@@ -1,7 +1,8 @@
 package com.jam.common;
 
-import com.jam.client.Capability.BlacklistCapability;
-import com.jam.client.Capability.DefaultBlacklistCapability;
+import com.jam.client.Capability.BlacklistHandler;
+import com.jam.client.Capability.BlacklistStorage;
+import com.jam.client.Capability.BlackList;
 import com.jam.client.Capability.IBlacklist;
 import com.jam.client.ClientTick;
 import com.jam.common.config.ConfigHandler;
@@ -9,6 +10,7 @@ import com.jam.common.lib.Ref;
 import com.jam.common.proxy.IProxy;
 import com.jam.common.server.JamPacketHandler;
 import com.jam.common.server.Packet;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
@@ -44,13 +46,14 @@ public class Jam {
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register( new ConfigHandler() );
         MinecraftForge.EVENT_BUS.register( new ClientTick() );
+        MinecraftForge.EVENT_BUS.register( new BlacklistHandler() );
 
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         System.out.println("Jam Pre Init");
 
         JamPacketHandler.NetworkInstance.registerMessage(Packet.Handler.class, Packet.class, 0, Side.SERVER);
 
-        CapabilityManager.INSTANCE.register(IBlacklist.class, new BlacklistCapability(), DefaultBlacklistCapability.class);
+        CapabilityManager.INSTANCE.register(IBlacklist.class, new BlacklistStorage(), BlackList.class);
 
         proxy.preInit(event);
     }

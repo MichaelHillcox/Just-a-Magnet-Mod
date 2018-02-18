@@ -3,7 +3,6 @@ package com.jam.client;
 import com.jam.common.lib.Ref;
 import com.jam.common.server.JamPacketHandler;
 import com.jam.common.server.Packet;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -18,6 +17,7 @@ import org.lwjgl.input.Keyboard;
 public class KeyBindingHandler {
 
     private static KeyBinding toggleJam;
+    private static KeyBinding jamTemp;
 
     public static void init()
     {

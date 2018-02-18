@@ -2,6 +2,7 @@ package com.jam.client.Capability;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.List;
 
@@ -11,5 +12,4 @@ public interface IBlacklist {
     public void removeItem(ItemStack item);
 
     public List<ItemStack> getItems();
-
 }
