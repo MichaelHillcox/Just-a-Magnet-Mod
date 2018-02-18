@@ -40,11 +40,7 @@ public class KeyBindingHandler {
         }
 
         if( jamTemp.isPressed() ) {
-            ItemStack handItem = event.player.getHeldItem(EnumHand.MAIN_HAND);
-            IBlacklist list = event.player.getCapability(BlacklistProvider.BLACKLIST_CAPABILITY, null);
-            list.addItem(handItem);
-
-            System.out.println("ADDED THING");
+            JamPacketHandler.NetworkInstance.sendToServer(new Packet());
         }
     }
 }

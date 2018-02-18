@@ -1,9 +1,13 @@
 package com.jam.common.server;
 
+import com.jam.client.Capability.BlacklistProvider;
+import com.jam.client.Capability.IBlacklist;
 import com.jam.common.Jam;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
