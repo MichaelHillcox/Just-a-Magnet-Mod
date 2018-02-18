@@ -31,4 +31,9 @@ public class BlackList implements IBlacklist {
         return blacklist;
     }
 
+    @Override
+    public void setItems(List<ItemStack> items) {
+        blacklist.addAll(items);
+    }
+
 }

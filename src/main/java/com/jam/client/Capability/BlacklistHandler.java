@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class BlacklistHandler {
@@ -16,5 +17,15 @@ public class BlacklistHandler {
             return;
 
         event.addCapability(BLACKLIST_CAPABILITY, new BlacklistProvider());
+    }
+
+    @SubscribeEvent
+    public static void EventPlayerClone(PlayerEvent.Clone event) {
+        EntityPlayer player = event.getEntityPlayer();
+
+        IBlacklist data = player.getCapability(BlacklistProvider.BLACKLIST_CAPABILITY, null);
+        IBlacklist oldData = event.getOriginal().getCapability(BlacklistProvider.BLACKLIST_CAPABILITY, null);
+
+        data.setItems(oldData.getItems());
     }
 }

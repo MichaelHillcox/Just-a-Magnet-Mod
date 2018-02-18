@@ -10,6 +10,7 @@ public interface IBlacklist {
 
     public void addItem(ItemStack item);
     public void removeItem(ItemStack item);
+    public void setItems(List<ItemStack> items);
 
     public List<ItemStack> getItems();
 }

@@ -9,21 +9,22 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * Created by MiKeY on 07/08/17.
  */
-public class ClientProxy implements IProxy {
+public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-
+        super.preInit(event);
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
+        super.init(event);
         KeyBindingHandler.init();
     }
 
     @Override
     public void postInit(FMLPostInitializationEvent event) {
-
+        super.postInit(event);
     }
 
 }

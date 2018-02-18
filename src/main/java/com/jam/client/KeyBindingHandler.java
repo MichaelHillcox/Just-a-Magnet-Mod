@@ -1,10 +1,14 @@
 package com.jam.client;
 
+import com.jam.client.Capability.BlacklistProvider;
+import com.jam.client.Capability.IBlacklist;
 import com.jam.common.lib.Ref;
 import com.jam.common.server.JamPacketHandler;
 import com.jam.common.server.Packet;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -22,7 +26,9 @@ public class KeyBindingHandler {
     public static void init()
     {
         toggleJam = new KeyBinding(I18n.format("jam.toggle.desc"), Keyboard.KEY_NUMPAD3, Ref.MOD_NAME);
+        jamTemp = new KeyBinding("Stuff", Keyboard.KEY_NUMPAD4, Ref.MOD_NAME);
         ClientRegistry.registerKeyBinding(toggleJam);
+        ClientRegistry.registerKeyBinding(jamTemp);
     }
 
     @SideOnly(Side.CLIENT)
@@ -31,6 +37,14 @@ public class KeyBindingHandler {
     {
         if(toggleJam.isPressed()) {
             JamPacketHandler.NetworkInstance.sendToServer(new Packet());
+        }
+
+        if( jamTemp.isPressed() ) {
+            ItemStack handItem = event.player.getHeldItem(EnumHand.MAIN_HAND);
+            IBlacklist list = event.player.getCapability(BlacklistProvider.BLACKLIST_CAPABILITY, null);
+            list.addItem(handItem);
+
+            System.out.println("ADDED THING");
         }
     }
 }

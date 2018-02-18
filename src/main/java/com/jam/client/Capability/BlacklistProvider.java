@@ -1,24 +1,21 @@
 package com.jam.client.Capability;
 
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BlacklistProvider implements ICapabilityProvider {
+public class BlacklistProvider implements ICapabilitySerializable<NBTBase> {
 
 
     @CapabilityInject(IBlacklist.class)
     public static final Capability<IBlacklist> BLACKLIST_CAPABILITY = null;
     private IBlacklist instance = BLACKLIST_CAPABILITY.getDefaultInstance();
-    private IBlacklist capability = null;
-
-    public BlacklistProvider() {
-        setCapability(new BlackList());
-    }
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
@@ -31,7 +28,13 @@ public class BlacklistProvider implements ICapabilityProvider {
         return capability == BLACKLIST_CAPABILITY ? BLACKLIST_CAPABILITY.cast(this.instance) : null;
     }
 
-    public void setCapability(IBlacklist capability) {
-        this.capability = capability;
+    @Override
+    public NBTBase serializeNBT() {
+        return BLACKLIST_CAPABILITY.getStorage().writeNBT(BLACKLIST_CAPABILITY, this.instance, null);
+    }
+
+    @Override
+    public void deserializeNBT(NBTBase nbt) {
+        BLACKLIST_CAPABILITY.getStorage().readNBT(BLACKLIST_CAPABILITY, this.instance, null, nbt);
     }
 }
