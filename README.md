@@ -15,6 +15,11 @@ Install the mod, open up a world, edit your settings to change the default key f
 ### Help wanted
 If you know any other language then English then I'd love to support more languages. Please feel free to fork the project and submit a pull request.
 
+### Planned Features
+- Config based Teleport option in preference to Dragging the items
+- Ability to create a blacklist to avoid picking up items (possible, help wanted)
+  - Also be able to turn it off with a button toggle
+
 ### Supports
 |Minecraft Version|Mod Version|Forge Version|Branch
 |---|---|---|---
