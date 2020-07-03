@@ -1,13 +1,13 @@
-package com.jam.common.proxy;
+package pro.mikey.jam.common.proxy;
 
-import com.jam.client.Capability.BlackList;
-import com.jam.client.Capability.BlacklistHandler;
-import com.jam.client.Capability.BlacklistStorage;
-import com.jam.client.Capability.IBlacklist;
-import com.jam.client.ClientTick;
-import com.jam.common.Jam;
-import com.jam.common.ConfigHandler;
-import com.jam.common.packets.TogglePacket;
+import pro.mikey.jam.client.Capability.BlackList;
+import pro.mikey.jam.client.Capability.BlacklistHandler;
+import pro.mikey.jam.client.Capability.BlacklistStorage;
+import pro.mikey.jam.client.Capability.IBlacklist;
+import pro.mikey.jam.client.ClientTick;
+import pro.mikey.jam.common.Jam;
+import pro.mikey.jam.common.ConfigHandler;
+import pro.mikey.jam.common.packets.TogglePacket;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

@@ -1,4 +1,4 @@
-package com.jam.common.packets;
+package pro.mikey.jam.common.packets;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;

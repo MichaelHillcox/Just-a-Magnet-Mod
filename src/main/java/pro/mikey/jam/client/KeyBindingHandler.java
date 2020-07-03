@@ -1,7 +1,7 @@
-package com.jam.client;
+package pro.mikey.jam.client;
 
-import com.jam.common.Jam;
-import com.jam.common.packets.TogglePacket;
+import pro.mikey.jam.common.Jam;
+import pro.mikey.jam.common.packets.TogglePacket;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;

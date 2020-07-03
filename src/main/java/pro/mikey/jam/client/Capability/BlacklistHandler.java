@@ -1,6 +1,6 @@
-package com.jam.client.Capability;
+package pro.mikey.jam.client.Capability;
 
-import com.jam.common.Jam;
+import pro.mikey.jam.common.Jam;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;

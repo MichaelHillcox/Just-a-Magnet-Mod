@@ -1,6 +1,6 @@
-package com.jam.common.proxy;
+package pro.mikey.jam.common.proxy;
 
-import com.jam.client.gui.JamGuiConfig;
+import pro.mikey.jam.client.screens.JamGuiConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;

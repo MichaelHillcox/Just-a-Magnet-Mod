@@ -1,10 +1,6 @@
-package com.jam.client.Capability;
+package pro.mikey.jam.client.Capability;
 
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,14 +1,11 @@
-package com.jam.client.gui;
+package pro.mikey.jam.client.screens;
 
-import com.jam.common.Jam;
+import pro.mikey.jam.common.Jam;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.common.config.ConfigElement;
 
-/**
- * Created by MiKeY on 07/08/17.
- */
 public class JamGuiConfig extends GuiConfig {
     public JamGuiConfig(GuiScreen parentScreen) {
         super(parentScreen,

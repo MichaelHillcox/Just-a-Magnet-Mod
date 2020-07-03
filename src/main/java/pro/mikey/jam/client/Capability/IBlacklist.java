@@ -1,4 +1,4 @@
-package com.jam.client.Capability;
+package pro.mikey.jam.client.Capability;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
