@@ -1,21 +1,16 @@
-package com.jam.common.server;
+package com.jam.common.packets;
 
-import com.jam.client.Capability.BlacklistProvider;
-import com.jam.client.Capability.IBlacklist;
-import com.jam.common.Jam;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class Packet implements IMessage {
+public class TogglePacket implements IMessage {
 
-    public Packet() { }
+    public TogglePacket() { }
 
     @Override
     public void fromBytes(ByteBuf buf) { }
@@ -23,9 +18,9 @@ public class Packet implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) { }
 
-    public static class Handler implements IMessageHandler<Packet, IMessage> {
+    public static class Handler implements IMessageHandler<TogglePacket, IMessage> {
         @Override
-        public IMessage onMessage(Packet message, MessageContext ctx) {
+        public IMessage onMessage(TogglePacket message, MessageContext ctx) {
 
             EntityPlayerMP player = ctx.getServerHandler().player;
 

@@ -1,6 +1,6 @@
 package com.jam.client.Capability;
 
-import com.jam.common.lib.Ref;
+import com.jam.common.Jam;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class BlacklistHandler {
-    public static final ResourceLocation BLACKLIST_CAPABILITY = new ResourceLocation(Ref.MOD_ID, "blacklist");
+    public static final ResourceLocation BLACKLIST_CAPABILITY = new ResourceLocation(Jam.MOD_ID, "blacklist");
 
     @SubscribeEvent
     public void attachCapability(AttachCapabilitiesEvent<Entity> event) {
