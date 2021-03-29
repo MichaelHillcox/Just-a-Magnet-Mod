@@ -1,7 +1,11 @@
 package pro.mikey.jam;
 
 import javafx.geometry.Side;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.ForgeI18n;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -10,6 +14,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.glfw.GLFW;
 import pro.mikey.jam.packets.TogglePacket;
 
 @Mod(Jam.MOD_ID)
@@ -38,6 +43,6 @@ public class Jam {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        KeyBindingHandler.init();
+        ClientSetup.init();
     }
 }
