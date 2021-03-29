@@ -1,0 +1,16 @@
+modLoader="javafml" #mandatory
+loaderVersion="[28,)" #mandatory (28 is current forge version)
+issueTrackerURL="http://my.issue.tracker/" #optional
+license="GPL-3.0 License"
+[[mods]] #mandatory
+modId="justamagnet" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="JaM - Just a Magnet" #mandatory
+updateJSONURL="https://raw.githubusercontent.com/MichaelHillcox/Just-a-Magnet-Mod/main/versions.json" #optional
+displayURL="https://github.com/MichaelHillcox/Just-a-Magnet-Mod" #optional
+logoFile="assets/justamagnet/logo.jpg" #optional
+authors="ErrorMikey" #optional
+description='''
+A Dead simple magnet mod. No items, Just one button.
+'''
+
