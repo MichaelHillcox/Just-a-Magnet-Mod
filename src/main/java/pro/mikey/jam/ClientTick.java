@@ -14,29 +14,35 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.util.List;
 
 @Mod.EventBusSubscriber
 public class ClientTick {
     @SubscribeEvent
-    public void tickEvent(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END)
+    public static void tickEvent(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) {
             return;
+        }
 
         PlayerEntity player = event.player;
         CompoundNBT tag = player.getPersistentData();
-        if (!tag.getBoolean("jam_toggle_on"))
+        if (!tag.getBoolean("jam_toggle_on")) {
             return;
+        }
 
-//        IBlacklist blacklist = event.player.getCapability(BlacklistProvider.BLACKLIST_CAPABILITY, null);
-//        List<ItemStack> items = blacklist.getItems();
-//
-//        System.out.println(items.size());
+        System.out.println(FMLLoader.getDist());
+        System.out.println("hi");
 
-        boolean directTeleport = tag.getBoolean("jam_teleport");
-        int range = tag.getInt("jam_range");
-        double speed = tag.getDouble("jam_speed");
+        //        IBlacklist blacklist = event.player.getCapability(BlacklistProvider.BLACKLIST_CAPABILITY, null);
+        //        List<ItemStack> items = blacklist.getItems();
+        //
+        //        System.out.println(items.size());
+
+        boolean directTeleport = false; //= tag.getBoolean("jam_teleport");
+        int range = 30; //tag.getInt("jam_range");
+        double speed = .1D; //tag.getDouble("jam_speed");
 
         AxisAlignedBB area = new AxisAlignedBB(player.posX - range, player.posY - range, player.posZ - range, player.posX + range, player.posY + range, player.posZ + range);
 
