@@ -3,6 +3,7 @@ package pro.mikey.jam.packets;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkEvent;
 import pro.mikey.jam.ClientSetup;
 import pro.mikey.jam.JamNbtKeys;
@@ -28,13 +29,17 @@ public class UpdateSettingsPacket {
 
     public static void handle(UpdateSettingsPacket message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            PlayerEntity player = ClientSetup.getPlayerFromContext(ctx);
-            System.out.println(ctx.get().getDirection());
+            PlayerEntity player;
+            if (ctx.get().getDirection() == NetworkDirection.PLAY_TO_CLIENT) {
+                player = ClientSetup.getPlayer();
+            } else {
+                player = ctx.get().getSender();
+            }
+
             if (player == null) {
                 return;
             }
 
-            System.out.println(player.getPersistentData());
             CompoundNBT tag = player.getPersistentData();
             tag.putBoolean(JamNbtKeys.ENABLED, message.enabled);
             tag.putBoolean(JamNbtKeys.TELEPORT, message.teleport);
