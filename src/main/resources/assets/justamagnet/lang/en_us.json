@@ -1,0 +1,11 @@
+{
+  "jam.mod_name": "JaM (Just a Magnet)",
+  "jam.toggle.key_magnet": "Toggle Magnet",
+  "jam.toggle.key_gui": "Open Magnet Settings",
+  "jam.toggle.enabled": "[JaM] Enabled",
+  "jam.toggle.disabled": "[JaM] Disabled",
+  "jam.screen.settings": "Magnet Settings",
+  "jam.screen.teleport": "Teleport Items: %s",
+  "jam.screen.range": "Range: %d",
+  "jam.screen.speed": "Speed: %.2f"
+}

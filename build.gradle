@@ -1,46 +1,140 @@
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.+', changing: true
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.1.0"
-group= "pro.mikey.jam"
-archivesBaseName = "justamagnet-1.12.2"
-
-sourceCompatibility = targetCompatibility = '1.8' 
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id 'pro.mikey.changelog' version '1.0.0-build.8'
 }
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = mod_version
+group = "pro.mikey.jam"
+archivesBaseName = "justamagnet-${game_version}"
+def env = System.getenv()
+if (env.GITHUB_RUN_NUMBER) {
+    version += "-build." + "${env.GITHUB_RUN_NUMBER}"
+}
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    version = "1.12.2-14.23.1.2555"
-    runDir = "run"
+    mappings channel: 'snapshot', version: "${forge_mappings}"
+    runs {
+        client {
+            workingDirectory project.file('run')
 
-    mappings = "snapshot_20171003"
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                justamagnet {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                justamagnet {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'justamagnet', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                justamagnet {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+dependencies {
+    minecraft "net.minecraftforge:forge:${game_version}-${forge_version}"
+}
 
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else except the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "JAM Just a magnet",
+                "Specification-Vendor"    : "ErrorMikey",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "ErrorMikey",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
     }
 }
 
+generateChangelog {
+    changelogFile = file("$buildDir/changelog.md")
+    captureKey = "(update)"
+    startSha = "$env.GIT_COMMIT"
+    endSha = "$env.GIT_PREVIOUS_COMMIT"
+}
+
+// Example configuration to allow publishing using the maven-publish task
+// we define a custom artifact that is sourced from the reobfJar output task
+// and then declare that to be published
+// Note you'll need to add a repository here
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "https://maven.saps.dev/releases"
+            credentials {
+                username = "mikey"
+                password = "${env.MAVEN_TOKEN}"
+            }
+        }
+    }
+}
+
+if (env.CURSE_DEPLOY_TOKEN) {
+    curseforge {
+        apiKey = env.CURSE_DEPLOY_TOKEN
+        project {
+            id = project.curseforge_id
+            releaseType = "release"
+            addGameVersion "Forge"
+            addGameVersion "${game_version}"
+            mainArtifact(remapJar.archivePath)
+            changelog = file("$buildDir/changelog.md")
+            changelogType = 'markdown'
+        }
+    }
+}
