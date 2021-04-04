@@ -105,6 +105,16 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     builtBy 'reobfJar'
 }
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives reobfArtifact
+    archives sourceJar
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -124,15 +134,16 @@ publishing {
 
 if (env.CURSE_DEPLOY_TOKEN) {
     curseforge {
-        apiKey = env.CURSE_DEPLOY_TOKEN
+        apiKey = "${env.CURSE_DEPLOY_TOKEN}"
         project {
             id = project.curseforge_id
             releaseType = "release"
             addGameVersion "Forge"
             addGameVersion "${game_version}"
-            mainArtifact(reobfArtifact)
+            mainArtifact(jar)
             changelog = file("$buildDir/changelog.md")
             changelogType = 'markdown'
+            addArtifact(sourceJar)
         }
     }
 }
