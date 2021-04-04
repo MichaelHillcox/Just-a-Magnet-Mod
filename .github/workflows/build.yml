@@ -3,8 +3,6 @@ name: Build and Package
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -24,13 +22,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Build with Gradle
-        run: ./gradlew build
+        env:
+          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+          CURSE_DEPLOY_TOKEN: ${{ secrets.CURSE_DEPLOY_TOKEN }}
+        run: ./gradlew build publish
+      - name: Push to curse
+        env:
+          CURSE_DEPLOY_TOKEN: ${{ secrets.CURSE_DEPLOY_TOKEN }}
+          GIT_COMMIT: ${{ github.event.after }}
+          GIT_PREVIOUS_COMMIT: ${{ github.event.before }}
+        run: ./gradlew build generateChangelog curseforge
       - name: Setting mod version
         run: |
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^mod_version= >> $GITHUB_ENV
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^game_version= >> $GITHUB_ENV
       - name: Create package name
-        run: echo "package_name=Advanced-XRay-$minecraft_version-$version-${{ github.head_ref || 'main' }}-SNAPSHOT-$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+        run: echo "package_name=justamagnet-$game_version-$version-build.$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.package_name }}
