@@ -29,7 +29,7 @@ jobs:
           CURSE_DEPLOY_TOKEN: ${{ secrets.CURSE_DEPLOY_TOKEN }}
           GIT_COMMIT: ${{ github.event.after }}
           GIT_PREVIOUS_COMMIT: ${{ github.event.before }}
-        run: ./gradlew build publish generateChangelog curseforge
+        run: ./gradlew --no-daemon --refresh-dependencies --continue --no- clean build publish generateChangelog curseforge
       - name: Setting mod version
         run: |
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^mod_version= >> $GITHUB_ENV
