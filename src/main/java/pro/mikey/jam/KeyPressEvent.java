@@ -12,12 +12,12 @@ public class KeyPressEvent {
 
     @SubscribeEvent
     public static void pressEvent(TickEvent.ClientTickEvent event) {
-        if (ClientSetup.toggleJam.isPressed()) {
+        if (ClientSetup.toggleJam.consumeClick()) {
             Jam.HANDLER.sendToServer(new TogglePacket());
         }
 
-        if (ClientSetup.openGui.isPressed()) {
-            Minecraft.getInstance().displayGuiScreen(new ConfigScreen());
+        if (ClientSetup.openGui.consumeClick()) {
+            Minecraft.getInstance().setScreen(new ConfigScreen());
         }
     }
 }
