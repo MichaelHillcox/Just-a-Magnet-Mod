@@ -17,9 +17,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = mod_version
+version = "$flat_game_version-$mod_version"
 group = "pro.mikey.jam"
-archivesBaseName = "justamagnet-${game_version}"
+archivesBaseName = "justamagnet"
 def env = System.getenv()
 if (env.GITHUB_RUN_NUMBER) {
     version += "-build." + "${env.GITHUB_RUN_NUMBER}"
@@ -79,7 +79,7 @@ minecraft {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "JAM Just a magnet",
+                "Specification-Title"     : "JaM (Just a magnet)",
                 "Specification-Vendor"    : "ErrorMikey",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
@@ -102,7 +102,6 @@ task sourceJar(type: Jar) {
 }
 
 artifacts {
-    archives reobfArtifact
     archives sourceJar
 }
 
@@ -110,6 +109,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             artifact reobfArtifact
+            artifactId = rootProject.archivesBaseName;
         }
     }
     repositories {
