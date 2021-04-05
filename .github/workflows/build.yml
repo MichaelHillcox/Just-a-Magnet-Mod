@@ -35,8 +35,17 @@ jobs:
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^mod_version= >> $GITHUB_ENV
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^game_version= >> $GITHUB_ENV
       - name: Create package name
-        run: echo "package_name=justamagnet-$game_version-$version-build.$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+        run: echo "package_name=justamagnet-$game_version-$mod_version-build.$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.package_name }}
           path: build/libs
+      - name: Release to Github
+        uses: softprops/action-gh-release@v1
+        with:
+          name: JaM ${{ env.game_version }} - ${{ env.mod_version }}
+          body_path: meta/release-changelog.md
+          files: |
+            build/libs/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
