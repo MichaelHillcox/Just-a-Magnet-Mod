@@ -48,7 +48,7 @@ public class ClientTick {
         int range = tag.getInt(JamNbtKeys.RANGE);
         double speed = tag.getDouble(JamNbtKeys.SPEED);
 
-        AxisAlignedBB area = new AxisAlignedBB(player.posX - range, player.posY - range, player.posZ - range, player.posX + range, player.posY + range, player.posZ + range);
+        AxisAlignedBB area = new AxisAlignedBB(player.getPosX() - range, player.getPosY() - range, player.getPosZ() - range, player.getPosX() + range, player.getPosY() + range, player.getPosZ() + range);
 
         // Grab a list of the items around the player
         List<ItemEntity> floatingItems = event.player.getEntityWorld().getEntitiesWithinAABB(ItemEntity.class, area);
@@ -82,12 +82,12 @@ public class ClientTick {
 
                 player.addStat(Stats.ITEM_PICKED_UP.get(stack.getItem()), itemCount);
             } else {
-                item.addVelocity((player.posX - item.posX) * speed, (((player.getEyePosition(1.0f)).y + 1) - item.posY) * speed, (player.posZ - item.posZ) * speed);
+                item.addVelocity((player.getPosX() - item.getPosX()) * speed, (((player.getEyePosition(1.0f)).y + 1) - item.getPosY()) * speed, (player.getPosZ() - item.getPosZ()) * speed);
             }
         }
 
         for (ExperienceOrbEntity orb : floatingOrbs) {
-            orb.addVelocity((player.posX - orb.posX) * speed, (((player.getEyePosition(1.0f)).y + 1) - orb.posY) * speed, (player.posZ - orb.posZ) * speed);
+            orb.addVelocity((player.getPosX() - orb.getPosX()) * speed, (((player.getEyePosition(1.0f)).y + 1) - orb.getPosY()) * speed, (player.getPosZ() - orb.getPosZ()) * speed);
         }
     }
 
