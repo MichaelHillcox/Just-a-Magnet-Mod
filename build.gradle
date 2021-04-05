@@ -11,7 +11,6 @@ buildscript {
 
 plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
-    id 'pro.mikey.changelog' version '1.0.0-build.8'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -27,6 +26,10 @@ if (env.GITHUB_RUN_NUMBER) {
 }
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${game_version}-${forge_version}"
+}
 
 minecraft {
     mappings channel: 'snapshot', version: "${forge_mappings}"
@@ -72,10 +75,6 @@ minecraft {
     }
 }
 
-dependencies {
-    minecraft "net.minecraftforge:forge:${game_version}-${forge_version}"
-}
-
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
@@ -90,14 +89,6 @@ jar {
         ])
     }
 }
-
-generateChangelog {
-    changelogFile = file("$buildDir/changelog.md")
-    captureKey = "(update)"
-    startSha = "$env.GIT_COMMIT"
-    endSha = "$env.GIT_PREVIOUS_COMMIT"
-}
-
 
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {
@@ -141,7 +132,7 @@ if (env.CURSE_DEPLOY_TOKEN) {
             addGameVersion "Forge"
             addGameVersion "${game_version}"
             mainArtifact(jar)
-            changelog = file("$buildDir/changelog.md")
+            changelog = file("$project.projectDir/meta/release-changelog.md").getText()
             changelogType = 'markdown'
             addArtifact(sourceJar)
         }
