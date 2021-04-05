@@ -28,9 +28,9 @@ public class TogglePacket {
             CompoundNBT tag = player.getPersistentData();
             tag.putBoolean(JamNbtKeys.ENABLED, !tag.getBoolean(JamNbtKeys.ENABLED));
             if (tag.getBoolean(JamNbtKeys.ENABLED)) {
-                player.sendMessage(new TranslationTextComponent("jam.toggle.enabled"));
+                player.displayClientMessage(new TranslationTextComponent("jam.toggle.enabled"), false);
             } else {
-                player.sendMessage(new TranslationTextComponent("jam.toggle.disabled"));
+                player.displayClientMessage(new TranslationTextComponent("jam.toggle.disabled"), false);
             }
         });
         ctx.get().setPacketHandled(true);

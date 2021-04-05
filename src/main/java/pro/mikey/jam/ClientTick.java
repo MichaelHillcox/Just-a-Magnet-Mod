@@ -48,11 +48,12 @@ public class ClientTick {
         int range = tag.getInt(JamNbtKeys.RANGE);
         double speed = tag.getDouble(JamNbtKeys.SPEED);
 
-        AxisAlignedBB area = new AxisAlignedBB(player.getPosX() - range, player.getPosY() - range, player.getPosZ() - range, player.getPosX() + range, player.getPosY() + range, player.getPosZ() + range);
+        //        AxisAlignedBB area = player.getBoundingBox().expandTowards(range, range, range);
+        AxisAlignedBB area = new AxisAlignedBB(player.getX() - range, player.getY() - range, player.getZ() - range, player.getX() + range, player.getY() + range, player.getZ() + range);
 
         // Grab a list of the items around the player
-        List<ItemEntity> floatingItems = event.player.getEntityWorld().getEntitiesWithinAABB(ItemEntity.class, area);
-        List<ExperienceOrbEntity> floatingOrbs = event.player.getEntityWorld().getEntitiesWithinAABB(ExperienceOrbEntity.class, area);
+        List<ItemEntity> floatingItems = event.player.level.getEntitiesOfClass(ItemEntity.class, area);
+        List<ExperienceOrbEntity> floatingOrbs = event.player.level.getEntitiesOfClass(ExperienceOrbEntity.class, area);
 
         if (floatingItems.isEmpty()) {
             return;
@@ -68,26 +69,26 @@ public class ClientTick {
                     continue;
                 }
 
-                if (!player.addItemStackToInventory(stack)) {
+                if (!player.addItem(stack)) {
                     continue;
                 }
 
                 ForgeEventFactory.onItemPickup(item, player);
-                player.onItemPickup(player, itemCount);
+                player.take(player, itemCount);
 
                 if (stack.isEmpty()) {
                     item.remove();
                     stack.setCount(itemCount);
                 }
 
-                player.addStat(Stats.ITEM_PICKED_UP.get(stack.getItem()), itemCount);
+                player.awardStat(Stats.ITEM_PICKED_UP.get(stack.getItem()), itemCount);
             } else {
-                item.addVelocity((player.getPosX() - item.getPosX()) * speed, (((player.getEyePosition(1.0f)).y + 1) - item.getPosY()) * speed, (player.getPosZ() - item.getPosZ()) * speed);
+                item.push((player.getX() - item.getX()) * speed, (((player.getEyePosition(1.0f)).y + 1) - item.getY()) * speed, (player.getZ() - item.getZ()) * speed);
             }
         }
 
         for (ExperienceOrbEntity orb : floatingOrbs) {
-            orb.addVelocity((player.getPosX() - orb.getPosX()) * speed, (((player.getEyePosition(1.0f)).y + 1) - orb.getPosY()) * speed, (player.getPosZ() - orb.getPosZ()) * speed);
+            orb.moveTo((player.getX() - orb.getX()) * speed, (((player.getEyePosition(1.0f)).y + 1) - orb.getY()) * speed, (player.getZ() - orb.getZ()) * speed);
         }
     }
 
@@ -108,6 +109,6 @@ public class ClientTick {
         }
 
         System.out.println(event.getPlayer());
-        Jam.HANDLER.sendTo(new UpdateSettingsPacket(data.getBoolean(JamNbtKeys.ENABLED), data.getBoolean(JamNbtKeys.TELEPORT), data.getInt(JamNbtKeys.RANGE), data.getDouble(JamNbtKeys.SPEED)), ((ServerPlayerEntity) event.getPlayer()).connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
+        Jam.HANDLER.sendTo(new UpdateSettingsPacket(data.getBoolean(JamNbtKeys.ENABLED), data.getBoolean(JamNbtKeys.TELEPORT), data.getInt(JamNbtKeys.RANGE), data.getDouble(JamNbtKeys.SPEED)), ((ServerPlayerEntity) event.getPlayer()).connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
     }
 }
