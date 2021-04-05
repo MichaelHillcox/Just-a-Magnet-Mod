@@ -26,10 +26,21 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew --no-daemon --refresh-dependencies --continue clean build
+      - name: Publish
+        env:
+          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+          CURSE_DEPLOY_TOKEN: ${{ secrets.CURSE_DEPLOY_TOKEN }}
+        run: ./gradlew --no-daemon --refresh-dependencies --continue publish curseforge
       - name: Setting mod version
         run: |
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^mod_version= >> $GITHUB_ENV
           cat $GITHUB_WORKSPACE/gradle.properties | grep ^game_version= >> $GITHUB_ENV
+      - name: Create package name
+        run: echo "package_name=justamagnet-$game_version-$mod_version-build.$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.package_name }}
+          path: build/libs
       - name: Release to Github
         uses: softprops/action-gh-release@v1
         with:
